@@ -1,21 +1,60 @@
 * {
     font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-form {
+#chat_history {
+    list-style-type: none;
+    padding: 0;
+    height: 50vh;
+    overflow: scroll;
+    background-color: blue;
+}
+
+.message {
+    background-color: gainsboro;
+    padding: 10px;
+    margin: 10px;
+}
+
+.div-message-header {
     display: flex;
-    justify-content: center;
-    gap: 4px;
-    bottom: 10px;
+    justify-content: space-between;
+}
+
+.span-name {
+    font-weight: bold;
+}
+
+.div-text {
+    margin: 5px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     top: 10px;
+    height: 10vh;
     background-color: deepskyblue;
+    align-items: center;
+    font-weight: bold;
 }
 
-.button {
-    background-color: azure;
+
+.form-message {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    bottom: 10px;
+}
+
+.form-message input{
+    flex: 7;
+}
+
+button {
+    background-color:orange;
+    font-weight: bold;
 }

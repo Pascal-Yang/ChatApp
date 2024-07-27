@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat Room</title>
     <link href="style.css" rel="stylesheet">
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="ChatRoom.js"></script>
 </head>
 <body>
+<!-- 
+    <form class="form-login">
+        <input type="text" id="username" placeholder="User Name">
+        <input type="text" id="password" placeholder="Password">
+        <button id="login" type="button">Login</button>
+        <button id="Register" type="button">Register</button>
+    </form> -->
 
     <header>
         <div>FSE Chat Room</div>
@@ -18,9 +25,9 @@
 
     <ul id="chat_history"></ul>
 
-    <form>
-        <input type="text" placeholder="New Message :)">
-        <button>Send</button>
+    <form class="form-message">
+        <input class="input-message" type="text" placeholder="New Message :)" required>
+        <button type="submit">Send</button>
     </form>
 
     

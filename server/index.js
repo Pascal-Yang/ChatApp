@@ -24,3 +24,11 @@ io.on('connection', (socket) =>{
 httpServer.listen(port, ()=>{
     console.log(`http server is listening to port ${port}`)
 });
+
+function createMessage(userName, text){
+    return{
+        userName,
+        text,
+        time: new Date().toLocaleString()
+    }
+}
