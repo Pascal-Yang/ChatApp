@@ -1,15 +1,17 @@
-import { createServer } from "http"
-import { Server } from "socket.io"
+const express = require('express')
+app = express()
 
-const httpServer = createServer();
+const http = require('http')
+const httpServer = http.createServer(app)
 
+const { Server } = require("socket.io")
 const io = new Server(httpServer, {
-    cors: {
-        origin: "*"
-    }
-});
+    cors: {origin:"*"}
+})
 
 const port = 1234;
+
+app.use(express.static(__dirname+'/public'))
 
 io.on('connection', (socket) =>{
     console.log(`Connection established with ${socket.id}`);
