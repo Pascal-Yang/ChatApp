@@ -1,4 +1,5 @@
-const socket = io('ws://localhost:1234');
+const socket = io('http://45.77.213.233:1234');
+
 const userName = 'Default User'
 
 console.log("Chat room js loaded")
@@ -7,7 +8,7 @@ const messageForm = document.querySelector('.form-message')
 const messageInput = document.querySelector('.input-message')
 const chatHistory = document.getElementById('chat_history')
 
-function creatNewMessage(name, text, time){
+function creatNewMessage(name, text, time) {
     let newMessage = document.createElement('li')
     newMessage.className = 'message'
 
@@ -22,7 +23,7 @@ function creatNewMessage(name, text, time){
 
     let timeSpan = document.createElement('span')
     timeSpan.className = 'span-time'
-    timeSpan.textContent = time   
+    timeSpan.textContent = time
     headerDiv.appendChild(timeSpan)
 
     // textDiv
@@ -35,24 +36,24 @@ function creatNewMessage(name, text, time){
     return newMessage
 }
 
-function scrollToButtom(){
+function scrollToButtom() {
     chatHistory.scrollTop = chatHistory.scrollHeight
 }
 
-function addNewMessage(name, text, time){
+function addNewMessage(name, text, time) {
     chatHistory.appendChild(creatNewMessage(name, text, time))
     scrollToButtom()
 }
 
 
 // sending message through socket.io
-messageForm.addEventListener('submit', (e)=>{
+messageForm.addEventListener('submit', (e) => {
     console.log(`message submit: ${messageInput.value}`)
     e.preventDefault();
     if (messageInput.value) {
         socket.emit('message', {
-            "text":messageInput.value,
-            "username":userName,
+            "text": messageInput.value,
+            "username": userName,
             "time": new Date().toLocaleString()
         });
         messageInput.value = ''
@@ -60,8 +61,8 @@ messageForm.addEventListener('submit', (e)=>{
 });
 
 // recieving message from io
-socket.on("message", (message)=>{
-    const {username, text, time} = message
+socket.on("message", (message) => {
+    const { username, text, time } = message
     console.log(`${username}  ${text}  ${time}`)
     addNewMessage(username, text, time)
 });
