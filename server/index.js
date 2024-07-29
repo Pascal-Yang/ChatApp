@@ -15,26 +15,7 @@ const mongoose = require('mongoose')
 const dburl = "mongodb://localhost:27017/test"
 mongoose.connect(dburl)
 
-const messageSchema = new mongoose.Schema({
-    text: String,
-    name: String,
-    time: Date,
-});
-
-const Message = mongoose.model('Message', messageSchema);
-
-async function uploadMessage(username, text, time) {
-    try {
-        const newMessage = await Message.create({
-            name: username,
-            text: text,
-            time: time,
-        })
-        console.log(`New message from ${username} is added to the database.`)
-    } catch (err) {
-        console.log(err)
-    }
-}
+const { Message, uploadMessage } = require('./database')
 
 app.use(express.static(__dirname + '/public'))
 
