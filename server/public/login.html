@@ -24,4 +24,11 @@
 
 </body>
 
+<script>
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search)
+        document.getElementById('log').textContent = params.get('log')
+    }
+</script>
+
 </html>

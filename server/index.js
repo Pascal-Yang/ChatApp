@@ -15,7 +15,7 @@ const io = new Server(httpServer, {
 
 const port = 1234;
 
-const { Message, User, uploadMessage, mongoose, userLogin } = require('./database')
+const { Message, User, uploadMessage, mongoose, userLogin, userRegister } = require('./database')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -46,22 +46,33 @@ app.get('/username', function (req, res) {
     }
 })
 
-app.post('/login', function (req, res) {
-    console.log(req.body)
+app.post('/login', async (req, res) => {
     const { name, password } = req.body
-    // const longinResult = userLogin(name, password)
-    // if (!longinResult) {
-    //     //direct to ChatRoom.html
-    //     res.sendFile(path.join(__dirname, 'public', 'ChatRoom.html'))
-    // }
-    console.log(`${name} is logged in at ${req.sessionID}.`)
-    req.session.username = name
-    res.redirect('/room')
+    console.log(`Login: ${name} with ${password}`)
+    const longinResult = await userLogin(name, password)
+    if (!longinResult) {
+        //direct to ChatRoom.html
+        console.log(`${name} is logged in at ${req.sessionID}.`)
+        req.session.username = name
+        res.redirect('/room')
+    } else {
+        res.redirect(`/?log=${longinResult}`)
+    }
+
 })
 
-app.post('/register', function (req, res) {
-    console.log(req.body)
+app.post('/register', async (req, res) => {
     const { name, password } = req.body
+    console.log(`Register: ${name} with ${password}`)
+    const registerResult = await userRegister(name, password)
+    res.redirect(`/?log=${registerResult}`)
+})
+
+app.post('/logout', async (req, res) => {
+    console.log(`logout requested by ${req.session.username}`)
+    req.session.username = null
+    const log = "You have been logged out :)"
+    res.redirect('/')
 })
 
 io.on('connection', (socket) => {

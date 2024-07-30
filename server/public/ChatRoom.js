@@ -7,6 +7,7 @@ console.log("Chat room js loaded")
 const messageForm = document.querySelector('.form-message')
 const messageInput = document.querySelector('.input-message')
 const chatHistory = document.getElementById('chat_history')
+const logoutButton = document.getElementById('logout')
 
 window.onload = getUserName
 
@@ -73,6 +74,22 @@ messageForm.addEventListener('submit', (e) => {
         messageInput.value = ''
     }
 });
+
+logoutButton.addEventListener('click', (e) => {
+    console.log(`logout`)
+    fetch('/logout', {
+        method: 'POST'
+    })
+        .then(res => {
+            if (res.ok) {
+                console.log("logout successful")
+                window.location.href = "/"
+            } else {
+                console.log("cannot logout")
+            }
+        })
+        .catch(err => { console.error('Logout Error:', err); })
+})
 
 // recieving message from io
 socket.on("message", (message) => {

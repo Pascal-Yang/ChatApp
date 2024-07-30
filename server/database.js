@@ -37,11 +37,15 @@ userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre('save', function (next) {
-    const user = this
-    const salt = bcrypt.genSalt(10)
-    user.password = bcrypt.hash(user.password, salt)
-    next()
+userSchema.pre('save', async function (next) {
+    try {
+        const salt = await bcrypt.genSalt(10)
+        this.password = await bcrypt.hash(this.password, salt)
+        next()
+    } catch (err) {
+        next(err)
+    }
+
 })
 
 userSchema.methods.verifyPassword = function (inputPassword) {
@@ -52,17 +56,35 @@ const User = mongoose.model('user', userSchema)
 
 // 0: succssed, 1: no user, 2: incorrect passowrd
 function userLogin(name, password) {
-    const user = User.findOne({ name: name })
-    if (user) {
-        if (user.verifyPassword(password)) {
-            return 0
+    return User.findOne({ name: name }).then(user => {
+        if (user) {
+            return user.verifyPassword(password).then(verified => {
+                if (verified) {
+                    return null
+                } else {
+                    return "Incorrect Password :("
+                }
+            })
         } else {
-            return 2
+            return "User Not Found :("
         }
-    } else {
-        return 1
-    }
-
+    })
 }
 
-module.exports = { Message, uploadMessage, User, mongoose, userLogin }
+function userRegister(name, password) {
+    return User.findOne({ name: name })
+        .then(user => {
+            if (user) {
+                return "User Name Already Exist :("
+            }
+            return User.create({
+                name: name,
+                password: password
+            })
+                .then(() => { return `Welcom ${name}. You can now login :)` })
+                .catch(err => { return "An error occurred during registration :(" })
+        })
+        .catch(err => { return "An error occurred during registration :(" })
+}
+
+module.exports = { Message, uploadMessage, User, mongoose, userLogin, userRegister }
