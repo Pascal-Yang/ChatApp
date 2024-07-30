@@ -1,0 +1,27 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link href="login.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <span class="title">FSE Chat Room</span>
+    <form class="login" method="POST">
+        <label>User Name</label>
+        <input type="text" placeholder="User Name" name="name">
+        <label>Password</label>
+        <input type=" text" placeholder="Password" name="password">
+        <div class="buttons">
+            <button type="submit" id="login" formaction="/login">Login</button>
+            <button type="submit" id="register" formaction="/register">Register</button>
+        </div>
+        <span id="log"></span>
+    </form>
+
+</body>
+
+</html>

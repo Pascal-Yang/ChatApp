@@ -1,6 +1,8 @@
 const mongo = require('mongodb')
 const mongoose = require('mongoose')
 const url = "mongodb://localhost:27017/test"
+mongoose.connect(url)
+const bcrypt = require('bcrypt')
 
 const messageSchema = new mongoose.Schema({
     text: String,
@@ -35,6 +37,32 @@ userSchema = new mongoose.Schema({
     }
 })
 
+userSchema.pre('save', function (next) {
+    const user = this
+    const salt = bcrypt.genSalt(10)
+    user.password = bcrypt.hash(user.password, salt)
+    next()
+})
+
+userSchema.methods.verifyPassword = function (inputPassword) {
+    return bcrypt.compare(inputPassword, this.password)
+}
+
 const User = mongoose.model('user', userSchema)
 
-module.exports = { Message, uploadMessage, User }
+// 0: succssed, 1: no user, 2: incorrect passowrd
+function userLogin(name, password) {
+    const user = User.findOne({ name: name })
+    if (user) {
+        if (user.verifyPassword(password)) {
+            return 0
+        } else {
+            return 2
+        }
+    } else {
+        return 1
+    }
+
+}
+
+module.exports = { Message, uploadMessage, User, mongoose, userLogin }

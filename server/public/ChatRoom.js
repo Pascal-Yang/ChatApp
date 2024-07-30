@@ -1,12 +1,26 @@
 const socket = io('http://45.77.213.233:1234');
 
-const userName = 'Default User'
+var userName = 'Default User'
 
 console.log("Chat room js loaded")
 
 const messageForm = document.querySelector('.form-message')
 const messageInput = document.querySelector('.input-message')
 const chatHistory = document.getElementById('chat_history')
+
+window.onload = getUserName
+
+function getUserName() {
+    const response = fetch('/username').then(res => {
+        return res.json()
+    }
+    ).then(data => {
+        console.log(data)
+        userName = data.username
+    }).catch(err => {
+        console.error('Error in fecthing username:', err)
+    })
+}
 
 function creatNewMessage(name, text, time) {
     let newMessage = document.createElement('li')
@@ -18,7 +32,7 @@ function creatNewMessage(name, text, time) {
 
     let nameSpan = document.createElement('span')
     nameSpan.className = 'span-name'
-    nameSpan.textContent = name
+    nameSpan.textContent = name == userName ? 'Me' : name
     headerDiv.appendChild(nameSpan)
 
     let timeSpan = document.createElement('span')

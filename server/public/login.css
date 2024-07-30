@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aliceblue;
+}
+
+
+.title {
+    margin-top: 35%;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.buttons {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: cornflowerblue;
+    width: 45%;
+    font-weight: bold;
+}
