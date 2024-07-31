@@ -1,32 +1,52 @@
 body {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
 }
 
 
 .title {
-    margin-top: 35%;
-    font-size: larger;
+    margin-top: 18vh;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
     font-weight: bolder;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90vw;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 0px;
 }
 
 .buttons {
+    height: 30px;
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
 }
 
-button {
-    background-color: cornflowerblue;
-    width: 45%;
+.buttons button {
+
+    color: unset;
+    border: unset;
+    border-color: unset;
+
+    background-color: #90bdf7;
+    color: balck !important;
+    border-radius: 7px;
+    width: 48%;
     font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid;
+    border-color: balck;
+
+
 }

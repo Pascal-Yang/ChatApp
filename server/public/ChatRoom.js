@@ -23,26 +23,40 @@ function getUserName() {
     })
 }
 
+function formatTime(time) {
+    const date = new Date(time)
+    const format = {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    };
+    const formatedDate = new Intl.DateTimeFormat('en-US', format).format(date)
+    return formatedDate.replaceAll('/', '.').replaceAll(',', '')
+}
+
 function creatNewMessage(name, text, time) {
-    let newMessage = document.createElement('li')
+    const newMessage = document.createElement('li')
     newMessage.className = 'message'
 
     // header with username and time
-    let headerDiv = document.createElement('div')
+    const headerDiv = document.createElement('div')
     headerDiv.className = 'div-message-header'
 
-    let nameSpan = document.createElement('span')
+    const nameSpan = document.createElement('span')
     nameSpan.className = 'span-name'
     nameSpan.textContent = name == userName ? 'Me' : name
     headerDiv.appendChild(nameSpan)
 
-    let timeSpan = document.createElement('span')
+    const timeSpan = document.createElement('span')
     timeSpan.className = 'span-time'
-    timeSpan.textContent = time
+    timeSpan.textContent = formatTime(time)
     headerDiv.appendChild(timeSpan)
 
     // textDiv
-    let textDiv = document.createElement('div')
+    const textDiv = document.createElement('div')
     textDiv.className = 'div-text'
     textDiv.textContent = text
 

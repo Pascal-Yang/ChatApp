@@ -1,4 +1,4 @@
-* {
+body {
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -6,15 +6,14 @@
 #chat_history {
     list-style-type: none;
     padding: 0;
-    height: 50vh;
+    height: 40vh;
     overflow: scroll;
-    background-color: blue;
 }
 
 .message {
-    background-color: gainsboro;
+    background-color: #ebebeb;
     padding: 10px;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .div-message-header {
@@ -27,17 +26,21 @@
 }
 
 .div-text {
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow-wrap: break-word;
 }
 
 header {
     display: flex;
     justify-content: space-between;
+    align-content: center;
     top: 10px;
-    height: 10vh;
-    background-color: deepskyblue;
+    height: 5vh;
+    background-color: #90bdf7;
     align-items: center;
     font-weight: bold;
+    padding: 5px
 }
 
 
@@ -46,15 +49,45 @@ header {
     height: 30vh;
     display: flex;
     flex-direction: column;
-    gap: 4px;
     bottom: 10px;
 }
 
-.form-message input{
-    flex: 7;
+.form-message textarea {
+    font-size: 1rem;
+    border-radius: 0px;
+    height: 25vh;
 }
 
-button {
-    background-color:orange;
+.form-message div {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    height: 5vh;
+    background-color: #90bdf7;
+    align-items: center;
     font-weight: bold;
+    padding: 5px
+}
+
+.form-message div button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+button {
+    color: unset;
+    height: 40px;
+    font-size: 20px;
+    background-color: orange;
+    font-weight: bold;
+
+    border: 1px solid;
+    border-color: balck;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 20px;
 }

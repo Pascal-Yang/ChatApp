@@ -9,12 +9,12 @@
 
 <body>
 
-    <span class="title">FSE Chat Room</span>
+    <h1 class="title">FSE Chat Room</h1>
     <form class="login" method="POST">
         <label>User Name</label>
-        <input type="text" placeholder="User Name" name="name">
+        <input type="text"  name="name">
         <label>Password</label>
-        <input type=" text" placeholder="Password" name="password">
+        <input type=" text"  name="password">
         <div class="buttons">
             <button type="submit" id="login" formaction="/login">Login</button>
             <button type="submit" id="register" formaction="/register">Register</button>
@@ -26,9 +26,11 @@
 
 <script>
     window.onload = () => {
-        const params = new URLSearchParams(window.location.search)
-        document.getElementById('log').textContent = params.get('log')
-    }
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('log').textContent = params.get('log');
+        // document.getElementById('login').style.color = 'black';
+        // document.getElementById('register').style.color = 'black';
+    };
 </script>
 
 </html>
