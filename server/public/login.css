@@ -9,7 +9,7 @@ body {
 
 
 .title {
-    margin-top: 18vh;
+    margin-top: 25vh;
     margin-bottom: 15px;
     font-size: 1.5rem;
     font-weight: bolder;
@@ -19,6 +19,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 90vw;
+    min-height: 25vh;
 }
 
 input {
